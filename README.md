@@ -13,3 +13,8 @@ merkle tree for each version in a development stream, and the same tree holds
 all known development streams to provide greater security and allows for
 validation of any version using the current root. 
 
+
+#### Development 
+Development is currently working on merging in a more generic and broadly used
+implementation that will also support the comprasion method needed for Gemfile's
+allowing us to implement a RubyGem implementation in Go.

@@ -1,12 +1,13 @@
-package cli
+package version
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
-
-	color "github.com/multiverse-os/ansi/color"
-	style "github.com/multiverse-os/ansi/style"
+	// TODO: Segregate all ANSI based printing into its own sub-package for
+	// including exclusively when ANSI printing is occuring and colorng is needed.
+	//color "github.com/multiverse-os/ansi/color"
+	//style "github.com/multiverse-os/ansi/style"
 )
 
 // Semantic Versioning
@@ -63,21 +64,21 @@ func (self VersionComponent) String() string {
 	}
 }
 
-func (self Version) ColorString() string {
-	var colorVersion []string
-	for _, versionComponent := range strings.Split(self.String(), ".") {
-		if versionComponent == "0" {
-			colorVersion = append(colorVersion, style.Thin(color.SkyBlue(versionComponent)))
-		} else {
-			colorVersion = append(colorVersion, style.Bold(color.Purple(versionComponent)))
-		}
-	}
-	return style.Thin(color.Blue("[")) + style.Thin(color.Blue("v")) + strings.Join(colorVersion, color.White(".")) + style.Thin(color.Blue("]"))
-}
+//func (self Version) ColorString() string {
+//	var colorVersion []string
+//	for _, versionComponent := range strings.Split(self.String(), ".") {
+//		if versionComponent == "0" {
+//			colorVersion = append(colorVersion, style.Thin(color.SkyBlue(versionComponent)))
+//		} else {
+//			colorVersion = append(colorVersion, style.Bold(color.Purple(versionComponent)))
+//		}
+//	}
+//	return style.Thin(color.Blue("[")) + style.Thin(color.Blue("v")) + strings.Join(colorVersion, color.White(".")) + style.Thin(color.Blue("]"))
+//}
 
-func defaultVersionTemplate() string {
-	return "{{.header}}" + color.SkyBlue(style.Thin(" version ")) + "{{.version}}\n"
-}
+//func defaultVersionTemplate() string {
+//	return "{{.header}}" + color.SkyBlue(style.Thin(" version ")) + "{{.version}}\n"
+//}
 
 func (self Version) undefined() bool {
 	return (self.Major == 0 && self.Minor == 0 && self.Patch == 0)
